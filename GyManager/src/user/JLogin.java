@@ -1,6 +1,7 @@
 package user;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import modelo.Hash;
 import modelo.Sqlusuarios;
@@ -17,6 +18,45 @@ public class JLogin extends javax.swing.JFrame {
         initComponents();
         this.getContentPane().setBackground(new Color(240, 242, 245)); //COLOR BACKGROUND
         
+    }
+    
+    /*Metodo para Iniciar Sesion*/
+    private void login(){
+        
+        Sqlusuarios modSql = new Sqlusuarios();
+        User mod = new User();
+        
+        /*Obtenemos Fecha y Hora de inicio de sesion*/
+        Date date = new Date();
+        DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        
+        
+        String pass = new String(txtPassword.getPassword());
+        
+        if(!txtUsuario.getText().equals("") && !pass.equals(""))
+        {
+            String nuevoPass = Hash.sha1(pass);
+            
+            /*Insertamos valores al modelo user*/
+            mod.setUsuario(txtUsuario.getText());
+            mod.setPassword(nuevoPass);
+            mod.setLast_session(fechaHora.format(date));
+            
+            if(modSql.login(mod)){
+                
+                JHome.frmlog = null;
+                
+                JHome frmvista = new JHome(mod);
+                frmvista.setVisible(true);
+                
+                this.dispose();//Cerrar ventana
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "El usuario y/o la contraseña es incorrecta");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Introduce un usuario y/o contraseña");
+        }
     }
 
 
@@ -39,17 +79,32 @@ public class JLogin extends javax.swing.JFrame {
         jLabel1.setText("Usuario");
 
         txtUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyTyped(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Contraseña");
 
         txtPassword.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyTyped(evt);
+            }
+        });
 
         btnIniciar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnIniciar.setText("INICIAR SESION");
         btnIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarActionPerformed(evt);
+            }
+        });
+        btnIniciar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnIniciarKeyPressed(evt);
             }
         });
 
@@ -107,45 +162,36 @@ public class JLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /*Clic al boton Iniciar*/
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-    
-        Sqlusuarios modSql = new Sqlusuarios();
-        User mod = new User();
         
-        /*Obtenemos Fecha y Hora de inicio de sesion*/
-        Date date = new Date();
-        DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        
-        
-        String pass = new String(txtPassword.getPassword());
-        
-        if(!txtUsuario.getText().equals("") && !pass.equals(""))
-        {
-            String nuevoPass = Hash.sha1(pass);
-            
-            /*Insertamos valores al modelo user*/
-            mod.setUsuario(txtUsuario.getText());
-            mod.setPassword(nuevoPass);
-            mod.setLast_session(fechaHora.format(date));
-            
-            if(modSql.login(mod)){
-                
-                JHome.frmlog = null;
-                
-                JHome frmvista = new JHome(mod);
-                frmvista.setVisible(true);
-                
-                this.dispose();//Cerrar ventana
-                
-            }else{
-                JOptionPane.showMessageDialog(null, "El usuario y/o la contraseña es incorrecta");
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Introduce un usuario y/o contraseña");
-        }
-        
+        login();    
         
     }//GEN-LAST:event_btnIniciarActionPerformed
+
+    private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
+        
+        /*Si se presiona Enter en la casilla de Contraseña*/
+        if(evt.getKeyChar() == KeyEvent.VK_ENTER){
+            login();
+        }
+    }//GEN-LAST:event_txtUsuarioKeyTyped
+
+    private void txtPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyTyped
+        
+        /*Si se presiona Enter en la casilla de usuario*/
+        if(evt.getKeyChar() == KeyEvent.VK_ENTER){
+            login();
+        }
+    }//GEN-LAST:event_txtPasswordKeyTyped
+
+    private void btnIniciarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnIniciarKeyPressed
+        
+        /*Si se presiona Enter en el boton INICIAR SESION*/
+        if(evt.getKeyChar() == KeyEvent.VK_ENTER){
+            login();
+        }
+    }//GEN-LAST:event_btnIniciarKeyPressed
 
 
     public static void main(String args[]) {

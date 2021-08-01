@@ -7,6 +7,7 @@ public class User {
     private String usuario;
     private String password;
     private String nombre;
+    private String apellidos;
     private String last_session;
     private int id_tipo;
     private String nombre_tipo;
@@ -41,6 +42,14 @@ public class User {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public String getLast_session() {
