@@ -1,7 +1,7 @@
 package modelo;
 
 
-public class usuarios {
+public class NewUser {
     
     private int id;
     private String usuario;

@@ -24,7 +24,9 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="1173" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnNewUser" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="1048" max="32767" attributes="0"/>
               <Component id="btnCerrarSesion" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -34,7 +36,10 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="686" max="32767" attributes="0"/>
-              <Component id="btnCerrarSesion" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnCerrarSesion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnNewUser" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -48,6 +53,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCerrarSesionActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="btnNewUser">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Registrar Usuario"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

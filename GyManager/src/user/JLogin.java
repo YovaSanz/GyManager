@@ -4,8 +4,8 @@ import java.awt.*;
 import javax.swing.JOptionPane;
 import modelo.Hash;
 import modelo.Sqlusuarios;
-import modelo.usuarios;
-import encargado.JHome;
+import modelo.User;
+import vista.JHome;
 import java.text.*;
 import java.util.*;
 
@@ -110,7 +110,7 @@ public class JLogin extends javax.swing.JFrame {
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
     
         Sqlusuarios modSql = new Sqlusuarios();
-        usuarios mod = new usuarios();
+        User mod = new User();
         
         /*Obtenemos Fecha y Hora de inicio de sesion*/
         Date date = new Date();
@@ -132,7 +132,7 @@ public class JLogin extends javax.swing.JFrame {
                 
                 JHome.frmlog = null;
                 
-                JHome frmvista = new JHome();
+                JHome frmvista = new JHome(mod);
                 frmvista.setVisible(true);
                 
                 this.dispose();//Cerrar ventana

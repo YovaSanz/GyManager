@@ -3,7 +3,7 @@ package user;
 import javax.swing.JOptionPane;
 import modelo.Hash;
 import modelo.Sqlusuarios;
-import modelo.usuarios;
+import modelo.NewUser;
 
 
 public class JNewUser extends javax.swing.JFrame {
@@ -130,7 +130,7 @@ public class JNewUser extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         Sqlusuarios modsql = new Sqlusuarios();
-        usuarios mod = new usuarios();
+        NewUser mod = new NewUser();
         
         String pass = new String(txtPassword.getPassword());
         String pass2 = new String(txtPassword2.getPassword());

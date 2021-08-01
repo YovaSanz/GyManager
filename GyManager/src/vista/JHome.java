@@ -1,17 +1,40 @@
 
-package encargado;
+package vista;
 
 import java.awt.Color;
+import modelo.User;
 import user.JLogin;
 
 
 public class JHome extends javax.swing.JFrame {
 
+    User mod;
+    
     public static JLogin frmlog;
 
     public JHome() {
         initComponents();
+    }
+    
+    public JHome(User mod) {
+        initComponents();
+        //setLocationRelativeTO(null);//para centrar la ventana
+        
         this.getContentPane().setBackground(new Color(240, 242, 245)); //COLOR BACKGROUND
+
+        this.mod = mod;
+        
+        /*ADMINSTRADOR*/
+        if(this.mod.getId_tipo() == 1){
+            
+            
+        }
+        /*ENCARGADO*/
+        else if(this.mod.getId_tipo() == 2){
+            
+            btnNewUser.setVisible(false);
+            
+        }
     }
 
     /**
@@ -24,6 +47,7 @@ public class JHome extends javax.swing.JFrame {
     private void initComponents() {
 
         btnCerrarSesion = new javax.swing.JButton();
+        btnNewUser = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -34,12 +58,16 @@ public class JHome extends javax.swing.JFrame {
             }
         });
 
+        btnNewUser.setText("Registrar Usuario");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(1173, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(btnNewUser)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1048, Short.MAX_VALUE)
                 .addComponent(btnCerrarSesion)
                 .addContainerGap())
         );
@@ -47,7 +75,9 @@ public class JHome extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(686, Short.MAX_VALUE)
-                .addComponent(btnCerrarSesion)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCerrarSesion)
+                    .addComponent(btnNewUser))
                 .addContainerGap())
         );
 
@@ -104,5 +134,6 @@ public class JHome extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrarSesion;
+    private javax.swing.JToggleButton btnNewUser;
     // End of variables declaration//GEN-END:variables
 }
