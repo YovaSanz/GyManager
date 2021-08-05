@@ -1,9 +1,7 @@
 # Sistema para un gym
 
-1. crear una base de datos con el nombre: gymanager
+1. Exportar la base de datos que estan el la carpeta GyManager_BD
 
-2. Exportar las tablas que estan el la carpeta GyManager_BD
+2. Abrir el proyecto GyManager con Netbeans
 
-3. Abrir el proyecto GyManager con Netbeans
-
-4. Exportar las librerias que estan en la capeta Librerias
+3. Exportar las librerias que estan en la capeta Librerias
