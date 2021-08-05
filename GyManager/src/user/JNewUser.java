@@ -30,7 +30,7 @@ public class JNewUser extends javax.swing.JFrame {
         txtNombre = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtApellidos = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         cboxRol = new javax.swing.JComboBox<>();
 
@@ -72,7 +72,7 @@ public class JNewUser extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Apellidos:");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtApellidos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel6.setText("Rol:");
 
@@ -95,14 +95,14 @@ public class JNewUser extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtUsuario)
                     .addComponent(txtPassword)
                     .addComponent(txtPassword2)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                    .addComponent(jTextField1)
-                    .addComponent(cboxRol, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(117, Short.MAX_VALUE))
+                    .addComponent(txtNombre)
+                    .addComponent(txtApellidos)
+                    .addComponent(cboxRol, 0, 142, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,12 +126,12 @@ public class JNewUser extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(cboxRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -140,16 +140,16 @@ public class JNewUser extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -163,6 +163,7 @@ public class JNewUser extends javax.swing.JFrame {
         txtPassword.setText("");
         txtPassword2.setText("");
         txtNombre.setText("");
+        txtApellidos.setText("");
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -170,21 +171,24 @@ public class JNewUser extends javax.swing.JFrame {
         Sqlusuarios modsql = new Sqlusuarios();
         NewUser mod = new NewUser();
         
+        //Convierte el password en string
         String pass = new String(txtPassword.getPassword());
         String pass2 = new String(txtPassword2.getPassword());
         
         
-        if(txtUsuario.getText().equals("") || pass.equals("") || pass2.equals("") || txtNombre.getText().equals("")){
+        if(txtUsuario.getText().equals("") || pass.equals("") || pass2.equals("") || txtNombre.getText().equals("") || txtApellidos.getText().equals("")){ //Comprobar que no haya espacio vacios
             JOptionPane.showMessageDialog(null, "Hay campos vacios, debe llenar todos los campos");
         }else{
-            if (pass.equals(pass2)) {
-                if (modsql.existeUsuario(txtUsuario.getText()) == 0) {
+            if (pass.equals(pass2)) {//Comprobar contraseña iguales
+                
+                if (modsql.existeUsuario(txtUsuario.getText()) == 0) { //Comprobar si existe usuario
                     
                     String nuevoPass = Hash.sha1(pass); //Cifrado de contraseña
 
                     mod.setUsuario(txtUsuario.getText());
                     mod.setPassword(nuevoPass);
                     mod.setNombre(txtNombre.getText());
+                    mod.setApellidos(txtApellidos.getText());
                     mod.setId_tipo(cboxRol.getSelectedIndex() + 1);
 
                     if (modsql.registrar(mod)) {
@@ -257,7 +261,7 @@ public class JNewUser extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JPasswordField txtPassword2;
