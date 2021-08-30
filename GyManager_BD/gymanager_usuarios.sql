@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `gymanager` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `gymanager`;
 -- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
 -- Host: localhost    Database: gymanager
@@ -44,7 +42,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'admin','d033e22ae348aeb5660fc2140aec35850c4da997','admin',NULL,'2021-08-03 19:59:05',1),(2,'Usuario','b665e217b51994789b02b1838e730d6b93baa30f','usuario',NULL,'2021-08-02 23:19:05',2),(3,'encargado1','84d2512083ab24ad261ccc5f4a7115c7876f37c0','Homero Simpson',NULL,'2021-07-31 22:18:08',2),(4,'Javi','9e179d6b17c660dea1ef2200340757532921389d','Javier',NULL,'2021-08-04 22:08:05',1);
+INSERT INTO `usuarios` VALUES (1,'admin','d033e22ae348aeb5660fc2140aec35850c4da997','admin',NULL,'2021-08-30 14:25:49',1),(2,'Usuario','b665e217b51994789b02b1838e730d6b93baa30f','usuario',NULL,'2021-08-22 14:46:56',2),(3,'encargado1','84d2512083ab24ad261ccc5f4a7115c7876f37c0','Homero Simpson',NULL,'2021-07-31 22:18:08',2),(4,'Javi','9e179d6b17c660dea1ef2200340757532921389d','Javier',NULL,'2021-08-07 22:24:20',1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-05  0:55:34
+-- Dump completed on 2021-08-30 14:31:02

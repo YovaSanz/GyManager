@@ -9,6 +9,9 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import modelo.Conexion;
+import modelo.NewUser;
+import modelo.User;
 
 
 public class Sqlusuarios extends Conexion {

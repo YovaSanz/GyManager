@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `gymanager` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `gymanager`;
 -- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
 -- Host: localhost    Database: gymanager
@@ -31,10 +29,11 @@ CREATE TABLE `socios` (
   `apellidoP` varchar(25) NOT NULL,
   `apellidoM` varchar(25) DEFAULT NULL,
   `tipoMembresia` varchar(15) NOT NULL,
-  `fechaInscripcion` datetime DEFAULT '0000-00-00 00:00:00',
-  `mesesSuscripto` int DEFAULT NULL,
+  `fechaInscripcion` date DEFAULT '0000-00-00',
+  `fechaMembresia` date DEFAULT '0000-00-00',
+  `ultimaEntrada` datetime DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id_socio`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +42,7 @@ CREATE TABLE `socios` (
 
 LOCK TABLES `socios` WRITE;
 /*!40000 ALTER TABLE `socios` DISABLE KEYS */;
-INSERT INTO `socios` VALUES (1,'caj00','Javier','Carlos','Garcia','Trimestral',NULL,NULL),(2,'rod00','Daniel','Rojas','Gonzales','Cuatrimestral',NULL,NULL),(3,'ele00','Ejemplo','Elemplo','Ejemplo','Cuatrimestral',NULL,NULL),(4,'non00','Nombre','Nombre','Ejemplo','Cuatrimestral',NULL,NULL),(5,'es 00',' abner','Esparza','Araiza','Mensual',NULL,NULL),(6,'all00','Lee','Alexander','McQueen','Bimestral','2021-08-04 07:47:08',NULL),(7,'kaa00','Audrey','Kathleen','Ruston','Cuatrimestral','2021-08-04 07:54:18',NULL),(8,'lec00','Christie','Lee','Hudson','Semestral','2021-08-04 07:58:46',NULL),(9,'caj00','Javier','Carlos','Ruston','Bimestral','2021-08-04 21:56:11',NULL),(10,'roc00','Christie','Rojas','Gonzales','Semestral','2021-08-04 22:02:25',NULL);
+INSERT INTO `socios` VALUES (2,'rod00','Daniel','Rojas','Gonzales','Cuatrimestral','2021-08-04','2021-07-09','2021-08-27 00:00:00'),(3,'ele00','Ejemplo','Elemplo','Ejemplo','Cuatrimestral','2021-08-04','2021-08-04','2021-08-27 00:00:00'),(4,'non00','Nom','Nombr','Ejemplo','Cuatrimestral','2021-08-04','2021-09-08','2021-08-27 03:30:41'),(5,'es 00','abner','Esparza','Araiza','Mensual','2021-08-04','2021-10-04','2021-08-27 03:30:29'),(6,'all00','Lee','Alexander','McQueen','Bimestral','2021-08-04','2021-08-04','2021-08-27 00:00:00'),(7,'kaa00','Audrey','Kathleen','Ruston','Cuatrimestral','2021-08-04','2021-07-24','2021-08-27 00:00:00'),(8,'lec00','Christie','Lee','Hudson','Semestral','2021-08-04','2021-08-04','2021-08-27 00:00:00'),(10,'roc00','Christie','Rojas','Gonzales','Semestral','2021-08-04','2021-08-04','2021-08-27 00:00:00'),(11,'crr00','Raul','Cruz','Romero','Bimestral','2021-08-06','2021-08-21','2021-08-27 00:00:00'),(12,'saj00','Jeo','Sanz','Jimz','Semestral','2021-08-27','2021-08-27','2021-08-27 06:18:25'),(13,'saj00','Jose','Sanc','Herd','Bimestral','2021-08-27','2021-10-27','2021-08-27 06:18:25');
 /*!40000 ALTER TABLE `socios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-05  0:55:33
+-- Dump completed on 2021-08-30 14:31:02

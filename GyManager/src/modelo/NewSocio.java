@@ -10,6 +10,8 @@ public class NewSocio {
     private String apellidoM;
     private String fechaInscripcion;
     private String tipoMembresia;
+    private String fechaMembrecias;
+    private String ultimaEntrada;
 
     public int getId() {
         return id;
@@ -66,5 +68,22 @@ public class NewSocio {
     public void setTipoMembresia(String tipoMembresia) {
         this.tipoMembresia = tipoMembresia;
     }
+
+    public String getFechaMembrecias() {
+        return fechaMembrecias;
+    }
+
+    public void setFechaMembrecias(String fechaMembrecias) {
+        this.fechaMembrecias = fechaMembrecias;
+    }
+
+    public String getUltimaEntrada() {
+        return ultimaEntrada;
+    }
+
+    public void setUltimaEntrada(String ultimaEntrada) {
+        this.ultimaEntrada = ultimaEntrada;
+    }
+    
     
 }
