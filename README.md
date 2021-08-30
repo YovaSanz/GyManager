@@ -1,6 +1,6 @@
 # Sistema para un gym
 
-##Pasos para ejecutar
+## Pasos para ejecutar
 
 1. Importar Base de datos que se encuentra en la carpeta GyManager_BD
 
@@ -9,7 +9,7 @@
 
 
 
-##Pasos para Montar el proyecto en **NetBeans 12.0 y JDK11**
+## Pasos para Montar el proyecto en **NetBeans 12.0 y JDK11**
 
 1. Exportar la base de datos que estan en la carpeta GyManager_BD
 
