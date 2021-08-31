@@ -13,7 +13,6 @@ import modelo.User;
 import user.JLogin;
 import user.JNewUser;
 
-
 public class JHome extends javax.swing.JFrame {
 
     User mod;
@@ -21,72 +20,69 @@ public class JHome extends javax.swing.JFrame {
     public static JVisita frmVisita;
     public static jRenovar frmRenovar;
     public static JNewUser frmNewUser;
-    
+
     PJVenta vt;
     PJProductos prtos;
-    
+
     private boolean panelNewSocio = false;
     private boolean panelEditSocio = false;
     private boolean ventanaVenta = false;
     private boolean ventanaInicio = true;
-    
+
     public JHome() {
-       //initComponents();
+        //initComponents();
     }
-    
+
     public JHome(User mod) {
         initComponents();
         //setLocationRelativeTO(null);//para centrar la ventana
         this.getContentPane().setBackground(new Color(240, 242, 245)); //COLOR BACKGROUND
         this.mod = mod;
         txtUserName.setText(this.mod.getNombre());
-        
+
         /*ADMINSTRADOR*/
-        if(this.mod.getId_tipo() == 1){  
-            
+        if (this.mod.getId_tipo() == 1) {
+
+        } /*ENCARGADO*/ else if (this.mod.getId_tipo() == 2) {
+            btnNewUser.setVisible(false);
         }
-        /*ENCARGADO*/
-        else if(this.mod.getId_tipo() == 2){
-            btnNewUser.setVisible(false); 
-        }
-        
+
         /*TODOS*/
         btnRegistrarEntrada.setEnabled(false);
         btnRenovarM.setEnabled(false);
         btnEditarSocio.setEnabled(false);
         btnEliminarSocio.setEnabled(false);
-        
+
         pNewSocio.setVisible(this.panelNewSocio);
         mostrarClientes();
-        
     }
-    
-    public void mostrarClientes(){/*Muestra los socios existentes*/
-         /*Obtenemos Fecha y Hora de registro de usuario*/
+
+    public void mostrarClientes() {/*Muestra los socios existentes*/
+ /*Obtenemos Fecha y Hora de registro de usuario*/
         Date date = new Date();
         DateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
-        
+
         SqlSocio logica = new SqlSocio();
         DefaultTableModel modelo = logica.mostrarClientes();
         DefaultTableModel modeloDia = logica.mostrarClientesDia(fecha.format(date));
         DefaultTableModel modeloVencidos = logica.mostrarClientesVencidos(fecha.format(date));
-        
-        
+
         tblaSocios.setModel(new DefaultTableModel());
         tblaSocios.setModel(modelo);
-        
+
         tblaVisitantes.setModel(modeloDia);
         tblaVencidos.setModel(modeloVencidos);
-        
+
     }
-    
+
     public static String upperCaseFirst(String val) {/* Metodo para convertir la primera letra en mayusucula */
-      char[] arr = val.toCharArray();
-      arr[0] = Character.toUpperCase(arr[0]);
-      return new String(arr);
+        char[] arr = val.toCharArray();
+        arr[0] = Character.toUpperCase(arr[0]);
+        return new String(arr);
     }
-    
-    private void limpiarNewSocio(){ /*Limpia el formulario de Nuevo socio*/
+
+    private void limpiarNewSocio() {
+        /*Limpia el formulario de Nuevo socio*/
         txtNumSocio.setText("");
         txtNombre.setText("");
         txtApellido1.setText("");
@@ -596,15 +592,15 @@ public class JHome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        if(frmlog == null){
+        if (frmlog == null) {
             frmlog = new JLogin();
             frmlog.setVisible(true); //Abre la ventana de login
             this.dispose(); //Cerrar ventana
-        } 
+        }
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnNewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewUserActionPerformed
-        if(frmNewUser == null){
+        if (frmNewUser == null) {
             frmNewUser = new JNewUser(); //Abre la ventana de para registrar usuarios
             frmNewUser.setVisible(true);
         }
@@ -615,10 +611,10 @@ public class JHome extends javax.swing.JFrame {
         SqlSocio modsqlscio = new SqlSocio();
         NewSocio modscio = new NewSocio();
 
-        if(this.panelNewSocio){
-            if(txtNombre.getText().equals("") || txtApellido1.getText().equals("") || txtApellido2.getText().equals("")){
+        if (this.panelNewSocio) {
+            if (txtNombre.getText().equals("") || txtApellido1.getText().equals("") || txtApellido2.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Hay campos vacios, debe llenar todos los campos");
-            }else{
+            } else {
                 /*Obtenemos Fecha y Hora de registro de usuario*/
                 Date date = new Date();
                 Calendar c = Calendar.getInstance();
@@ -637,10 +633,10 @@ public class JHome extends javax.swing.JFrame {
                 modscio.setFechaMembrecias(fecha.format(c.getTime()));
                 modscio.setUltimaEntrada(fechaHora.format(date));
 
-                String numSocio = (modscio.getApellidoP().substring(0,2) + modscio.getNombre().substring(0,1) + "00").toLowerCase();
+                String numSocio = (modscio.getApellidoP().substring(0, 2) + modscio.getNombre().substring(0, 1) + "00").toLowerCase();
                 modscio.setNumeroSocio(numSocio);
 
-                if(modsqlscio.existeSocio(modscio) == 0){
+                if (modsqlscio.existeSocio(modscio) == 0) {
                     if (modsqlscio.registrarSocio(modscio, this.mod)) {
                         JOptionPane.showMessageDialog(null, "Registro guardado");
 
@@ -649,58 +645,54 @@ public class JHome extends javax.swing.JFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "Error al guardar");
                     }
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "Existe el Socio");
                 }
             }
         }
-        
-        if(this.panelEditSocio){
-            
-            if (txtNombre.getText().equals("") && txtApellido1.getText().equals("") && txtApellido2.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Ningun campo puede estar vasio");
-            }else{
-                if (modsqlscio.editSocio(txtNumSocio.getText(), txtNombre.getText(), txtApellido1.getText(), txtApellido2.getText())) {
-                            JOptionPane.showMessageDialog(null, "Registro Editado Correctamente");
+        if (this.panelEditSocio) {
 
-                            limpiarNewSocio();
-                            pNewSocio.setVisible(false);
-                            this.panelNewSocio = false;
-                            this.panelEditSocio = false;
-                            mostrarClientes();
+            if (txtNombre.getText().equals("") && txtApellido1.getText().equals("") && txtApellido2.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Ningun campo puede estar vasio");
+            } else {
+                if (modsqlscio.editSocio(txtNumSocio.getText(), txtNombre.getText(), txtApellido1.getText(), txtApellido2.getText())) {
+                    JOptionPane.showMessageDialog(null, "Registro Editado Correctamente");
+
+                    limpiarNewSocio();
+                    pNewSocio.setVisible(false);
+                    this.panelNewSocio = false;
+                    this.panelEditSocio = false;
+                    mostrarClientes();
                 } else {
-                            JOptionPane.showMessageDialog(null, "Error al guardar");
+                    JOptionPane.showMessageDialog(null, "Error al guardar");
                 }
             }
         }
-        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
+        if (!ventanaInicio) {
+            tpPrincipal.addTab("Inicio", pInicio);
+            tpPrincipal.addTab("Socios", pSocios);
 
-        if(!ventanaInicio){
-            tpPrincipal.addTab("Inicio",pInicio);
-            tpPrincipal.addTab("Socios",pSocios);
-        
             tpPrincipal.remove(vt);
             tpPrincipal.remove(prtos);
-        
+
             tpPrincipal.setSelectedComponent(pInicio);
-        
+
             ventanaInicio = true;
             ventanaVenta = false;
-        }else{
+        } else {
             System.out.println("Ya estas en la ventana Inicio");
         }
-        
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
-        if(!ventanaVenta){
+        if (!ventanaVenta) {
             vt = new PJVenta(mod);
-            tpPrincipal.addTab("Venta",vt);
+            tpPrincipal.addTab("Venta", vt);
             prtos = new PJProductos(mod);
-            tpPrincipal.addTab("Productos",prtos);
+            tpPrincipal.addTab("Productos", prtos);
 
             tpPrincipal.remove(pInicio);
             tpPrincipal.remove(pSocios);
@@ -709,19 +701,19 @@ public class JHome extends javax.swing.JFrame {
 
             ventanaVenta = true;
             ventanaInicio = false;
-        }else{
+        } else {
             System.out.println("Ya estas en la ventana de Ventas");
-        }    
+        }
     }//GEN-LAST:event_btnVentaActionPerformed
 
     private void btnEditarSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarSocioActionPerformed
-        
+
         pNewSocio.setVisible(true);
         this.panelNewSocio = false;
         this.panelEditSocio = true;
         jtxtNumSocio.setVisible(true);
         txtNumSocio.setVisible(true);
-        
+
         txtNuevoSocio.setText("Editar Socio");
         int i = tblaSocios.getSelectedRow();
 
@@ -736,8 +728,7 @@ public class JHome extends javax.swing.JFrame {
         txtApellido1.setText(apellido1);
         txtApellido2.setText(apellido2);
         cboxMembresia.setSelectedItem(membresia);
-        
-        
+
         cboxMembresia.setEnabled(false);
         txtNumSocio.setEnabled(false);
 
@@ -745,13 +736,13 @@ public class JHome extends javax.swing.JFrame {
 
     private void btnNewSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewSocioActionPerformed
 
-        if(!this.panelNewSocio | panelEditSocio){
+        if (!this.panelNewSocio | panelEditSocio) {
             pNewSocio.setVisible(true);
             this.panelNewSocio = true;
             this.panelEditSocio = true;
 
             txtNuevoSocio.setText("Nuevo Socio");
-            
+
             txtNumSocio.setText("");
             txtNombre.setText("");
             txtApellido1.setText("");
@@ -760,8 +751,8 @@ public class JHome extends javax.swing.JFrame {
             jtxtNumSocio.setVisible(false);
             txtNumSocio.setVisible(false);
             cboxMembresia.setEnabled(true);
-            
-        }else{
+
+        } else {
             pNewSocio.setVisible(false);
             this.panelNewSocio = false;
         }
@@ -771,17 +762,17 @@ public class JHome extends javax.swing.JFrame {
         pNewSocio.setVisible(false);
         this.panelNewSocio = false;
         this.panelEditSocio = false;
-        
+
         btnEditarSocio.setEnabled(false);
         btnEliminarSocio.setEnabled(false);
         tblaSocios.clearSelection();
-        
+
         txtNombre.setText("");
         txtApellido1.setText("");
         txtApellido2.setText("");
         cboxMembresia.setSelectedIndex(0);
         cboxMembresia.setEnabled(true);
-        
+
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void tblaSociosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblaSociosMouseClicked
@@ -791,14 +782,14 @@ public class JHome extends javax.swing.JFrame {
 
     private void tblaVencidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblaVencidosMouseClicked
         btnRenovarM.setEnabled(true);
-        
+
         tblaVisitantes.clearSelection();
         btnRegistrarEntrada.setEnabled(false);
     }//GEN-LAST:event_tblaVencidosMouseClicked
 
     private void tblaVisitantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblaVisitantesMouseClicked
         btnRegistrarEntrada.setEnabled(true);
-        
+
         tblaVencidos.clearSelection();
         btnRenovarM.setEnabled(false);
     }//GEN-LAST:event_tblaVisitantesMouseClicked
@@ -806,39 +797,38 @@ public class JHome extends javax.swing.JFrame {
     private void btnRenovarMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenovarMActionPerformed
         int i = tblaVencidos.getSelectedRow();
         String numSocio = tblaVencidos.getValueAt(i, 0).toString();
-        String nombre = tblaVencidos.getValueAt(i, 0).toString();
-        String apellido1 = tblaVencidos.getValueAt(i, 0).toString();
-        String apellido2 = tblaVencidos.getValueAt(i, 0).toString();
-        
-        if(frmRenovar == null){
+        String nombre = tblaVencidos.getValueAt(i, 1).toString();
+        String apellido1 = tblaVencidos.getValueAt(i, 2).toString();
+        String apellido2 = tblaVencidos.getValueAt(i, 3).toString();
+
+        if (frmRenovar == null) {
             frmRenovar = new jRenovar(numSocio, nombre, apellido1, apellido2); //Abre la ventana de para registrar una visita
             frmRenovar.setVisible(true);
         }
-        
+
         mostrarClientes();
     }//GEN-LAST:event_btnRenovarMActionPerformed
 
     private void btnRegistrarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarEntradaActionPerformed
         SqlSocio modsqlscio = new SqlSocio();
-        
+
         Date date = new Date();
         DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        
+
         int i = tblaVisitantes.getSelectedRow();
         String numSocio = tblaVisitantes.getValueAt(i, 0).toString();
-        
+
         modsqlscio.registrarEntrada(numSocio, mod, fechaHora.format(date));
-        
+
         mostrarClientes();
     }//GEN-LAST:event_btnRegistrarEntradaActionPerformed
 
     private void btnVisitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisitaActionPerformed
-        
-        if(frmVisita == null){
+
+        if (frmVisita == null) {
             frmVisita = new JVisita(); //Abre la ventana de para registrar una visita
             frmVisita.setVisible(true);
         }
-        
         mostrarClientes();
     }//GEN-LAST:event_btnVisitaActionPerformed
 
@@ -847,33 +837,28 @@ public class JHome extends javax.swing.JFrame {
         int i = tblaSocios.getSelectedRow();
         String numSocio = tblaSocios.getValueAt(i, 0).toString();
         String nombre = tblaSocios.getValueAt(i, 1).toString() + " " + tblaSocios.getValueAt(i, 2).toString() + " " + tblaSocios.getValueAt(i, 3).toString();
-        
-        int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro de eliminar a: " + nombre + "?", "Alerta!", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE); 
-        
-        if(resp == 0){
-  
-        modsqlscio.eliminar(numSocio, mod);
-        mostrarClientes();
-        JOptionPane.showMessageDialog(null, "Operación realizada correctamente");
+
+        int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro de eliminar a: " + nombre + "?", "Alerta!", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+
+        if (resp == 0) {
+
+            modsqlscio.eliminar(numSocio, mod);
+            mostrarClientes();
+            JOptionPane.showMessageDialog(null, "Operación realizada correctamente");
         }
-        
     }//GEN-LAST:event_btnEliminarSocioActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-       
-        if(txtBuscar.getText().equals("")){
+        if (txtBuscar.getText().equals("")) {
             mostrarClientes();
-        }else{
-        SqlSocio logica = new SqlSocio();
-        DefaultTableModel modelo = logica.buscar(txtBuscar.getText());
-        
-        tblaSocios.setModel(new DefaultTableModel());
-        tblaSocios.setModel(modelo);
-        }
-        
-        
-    }//GEN-LAST:event_btnBuscarActionPerformed
+        } else {
+            SqlSocio logica = new SqlSocio();
+            DefaultTableModel modelo = logica.buscar(txtBuscar.getText());
 
+            tblaSocios.setModel(new DefaultTableModel());
+            tblaSocios.setModel(modelo);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnAceptar;

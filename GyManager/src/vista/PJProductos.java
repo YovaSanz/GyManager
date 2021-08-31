@@ -4,18 +4,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.NewProducto;
 import modelo.Producto;
-import modelo.SqlSocio;
 import modelo.User;
 import modelo.sqlProducto;
 
-/**
- *
- * @author yova_
- */
 public class PJProductos extends javax.swing.JPanel {
-
     User mod;
-    
     boolean newProducto = false;
     boolean editProdcuto = false;
     int id_producto;
@@ -26,17 +19,14 @@ public class PJProductos extends javax.swing.JPanel {
     
     public PJProductos(User mod) {
         initComponents();
-        
         mostrarProductos();
         
         jpNewProducto.setVisible(false);
-        
         btnEditar.setEnabled(false);
         btnEliminar.setEnabled(false);
     }
 
     private void limpiarNewProducto(){
-        
         txtNombreProducto.setText("");
         txtPrecioProducto.setText("");
         txtStockProducto.setText("");
@@ -360,13 +350,10 @@ public class PJProductos extends javax.swing.JPanel {
             if(txtNombreProducto.getText().equals("") || txtPrecioProducto.getText().equals("") || txtStockProducto.getText().equals("")){
                     JOptionPane.showMessageDialog(null, "Hay campos vacios, debe llenar todos los campos");
                 }else{
-
                     newpdto.setNombre(txtNombreProducto.getText());
                     newpdto.setPrecio(Double.parseDouble(txtPrecioProducto.getText()));
                     newpdto.setStock(Integer.parseInt(txtStockProducto.getText()));
                     newpdto.setDescripcion((txtDescripcionProducto.getText()));
-
-
                     if(sqlpdto.existe(newpdto) == 0){
                         if ( sqlpdto.nuevo(newpdto, this.mod)){
                             JOptionPane.showMessageDialog(null, "Producto guardado");
@@ -397,7 +384,6 @@ public class PJProductos extends javax.swing.JPanel {
 
                 if (sqlpdto.editar(prdto, this.mod)) {
                     JOptionPane.showMessageDialog(null, "Producto Editado");
-
                     limpiarNewProducto();
                     mostrarProductos();
                 } else {
@@ -410,15 +396,12 @@ public class PJProductos extends javax.swing.JPanel {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         sqlProducto sqlpdto = new sqlProducto();
-        
         int i = tblaProductos.getSelectedRow();
         int codigo = Integer.parseInt(tblaProductos.getValueAt(i, 0).toString());
         String nombre = tblaProductos.getValueAt(i, 1).toString();
         
         int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro de eliminar: " + nombre + "?", "Alerta!", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE); 
-        
         if(resp == 0){
-  
         sqlpdto.eliminar(codigo, mod);
         mostrarProductos();
         JOptionPane.showMessageDialog(null, "Operación realizada correctamente");
@@ -435,9 +418,7 @@ public class PJProductos extends javax.swing.JPanel {
             tblaProductos.setModel(new DefaultTableModel());
             tblaProductos.setModel(modelo);
         }
-        
     }//GEN-LAST:event_btnBuscarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btNuevo;
