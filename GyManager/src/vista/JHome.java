@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -14,6 +15,8 @@ import user.JLogin;
 import user.JNewUser;
 
 public class JHome extends javax.swing.JFrame {
+
+    Font dialog = new Font(Font.DIALOG, Font.BOLD, 14);
 
     User mod;
     public static JLogin frmlog;
@@ -95,9 +98,9 @@ public class JHome extends javax.swing.JFrame {
     private void initComponents() {
 
         btnInicio = new javax.swing.JButton();
-        btnVenta = new javax.swing.JToggleButton();
+        btnVenta = new javax.swing.JButton();
+        btnNewUser = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
-        btnNewUser = new javax.swing.JToggleButton();
         tpPrincipal = new javax.swing.JTabbedPane();
         pInicio = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -139,6 +142,7 @@ public class JHome extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(252, 252, 252));
+        setSize(new java.awt.Dimension(1301, 773));
 
         btnInicio.setBackground(new java.awt.Color(252, 252, 252));
         btnInicio.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -158,20 +162,19 @@ public class JHome extends javax.swing.JFrame {
             }
         });
 
-        btnVenta.setBackground(new java.awt.Color(252, 252, 252));
-        btnVenta.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-shopping-cart-40.png"))); // NOI18N
+        btnVenta.setFont(dialog);
         btnVenta.setText("Vender Producto");
-        btnVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnVenta.setFocusPainted(false);
-        btnVenta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnVenta.setMaximumSize(new java.awt.Dimension(160, 70));
-        btnVenta.setMinimumSize(new java.awt.Dimension(138, 68));
-        btnVenta.setPreferredSize(new java.awt.Dimension(160, 70));
-        btnVenta.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVentaActionPerformed(evt);
+            }
+        });
+
+        btnNewUser.setFont(dialog);
+        btnNewUser.setText("Registrar Usuario");
+        btnNewUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewUserActionPerformed(evt);
             }
         });
 
@@ -189,25 +192,6 @@ public class JHome extends javax.swing.JFrame {
         btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarSesionActionPerformed(evt);
-            }
-        });
-
-        btnNewUser.setBackground(new java.awt.Color(252, 252, 252));
-        btnNewUser.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        btnNewUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-user-40.png"))); // NOI18N
-        btnNewUser.setText("Registrar Usuario");
-        btnNewUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnNewUser.setFocusPainted(false);
-        btnNewUser.setFocusable(false);
-        btnNewUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnNewUser.setMaximumSize(new java.awt.Dimension(160, 70));
-        btnNewUser.setMinimumSize(new java.awt.Dimension(138, 68));
-        btnNewUser.setPreferredSize(new java.awt.Dimension(160, 70));
-        btnNewUser.setRequestFocusEnabled(false);
-        btnNewUser.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnNewUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNewUserActionPerformed(evt);
             }
         });
 
@@ -254,7 +238,7 @@ public class JHome extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tblaVencidos);
 
-        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setText("Socios vencidos");
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -304,7 +288,7 @@ public class JHome extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnVisita, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pInicioLayout.createSequentialGroup()
@@ -312,7 +296,7 @@ public class JHome extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnRenovarM)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pInicioLayout.setVerticalGroup(
@@ -329,7 +313,7 @@ public class JHome extends javax.swing.JFrame {
                     .addComponent(btnRenovarM))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
                 .addContainerGap())
         );
@@ -493,7 +477,7 @@ public class JHome extends javax.swing.JFrame {
             .addGroup(pSociosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pSociosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 923, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 942, Short.MAX_VALUE)
                     .addGroup(pSociosLayout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -525,7 +509,7 @@ public class JHome extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(pSociosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pNewSocio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -550,9 +534,9 @@ public class JHome extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnNewUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnNewUser, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -567,22 +551,23 @@ public class JHome extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnNewUser, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 29, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
                             .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)))
+                        .addGap(30, 30, 30))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnNewUser, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(tpPrincipal)
                 .addContainerGap())
         );
@@ -598,14 +583,6 @@ public class JHome extends javax.swing.JFrame {
             this.dispose(); //Cerrar ventana
         }
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
-
-    private void btnNewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewUserActionPerformed
-        if (frmNewUser == null) {
-            frmNewUser = new JNewUser(); //Abre la ventana de para registrar usuarios
-            frmNewUser.setVisible(true);
-        }
-        btnNewUser.setFocusPainted(false);
-    }//GEN-LAST:event_btnNewUserActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         SqlSocio modsqlscio = new SqlSocio();
@@ -686,25 +663,6 @@ public class JHome extends javax.swing.JFrame {
             System.out.println("Ya estas en la ventana Inicio");
         }
     }//GEN-LAST:event_btnInicioActionPerformed
-
-    private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
-        if (!ventanaVenta) {
-            vt = new PJVenta(mod);
-            tpPrincipal.addTab("Venta", vt);
-            prtos = new PJProductos(mod);
-            tpPrincipal.addTab("Productos", prtos);
-
-            tpPrincipal.remove(pInicio);
-            tpPrincipal.remove(pSocios);
-
-            tpPrincipal.setSelectedComponent(vt);
-
-            ventanaVenta = true;
-            ventanaInicio = false;
-        } else {
-            System.out.println("Ya estas en la ventana de Ventas");
-        }
-    }//GEN-LAST:event_btnVentaActionPerformed
 
     private void btnEditarSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarSocioActionPerformed
 
@@ -860,6 +818,33 @@ public class JHome extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
+        if (!ventanaVenta) {
+            vt = new PJVenta(mod);
+            tpPrincipal.addTab("Venta", vt);
+            prtos = new PJProductos(mod);
+            tpPrincipal.addTab("Productos", prtos);
+
+            tpPrincipal.remove(pInicio);
+            tpPrincipal.remove(pSocios);
+
+            tpPrincipal.setSelectedComponent(vt);
+
+            ventanaVenta = true;
+            ventanaInicio = false;
+        } else {
+            System.out.println("Ya estas en la ventana de Ventas");
+        }
+    }//GEN-LAST:event_btnVentaActionPerformed
+
+    private void btnNewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewUserActionPerformed
+        if (frmNewUser == null) {
+            frmNewUser = new JNewUser(); //Abre la ventana de para registrar usuarios
+            frmNewUser.setVisible(true);
+        }
+        btnNewUser.setFocusPainted(false);
+    }//GEN-LAST:event_btnNewUserActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnAceptar;
     private javax.swing.JToggleButton btnBuscar;
@@ -869,10 +854,10 @@ public class JHome extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnEliminarSocio;
     private javax.swing.JButton btnInicio;
     private javax.swing.JToggleButton btnNewSocio;
-    private javax.swing.JToggleButton btnNewUser;
+    private javax.swing.JButton btnNewUser;
     public static javax.swing.JToggleButton btnRegistrarEntrada;
     public static javax.swing.JToggleButton btnRenovarM;
-    private javax.swing.JToggleButton btnVenta;
+    private javax.swing.JButton btnVenta;
     private javax.swing.JToggleButton btnVisita;
     private javax.swing.JComboBox<String> cboxMembresia;
     private javax.swing.JLabel jLabel1;
