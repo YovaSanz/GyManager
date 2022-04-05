@@ -4,7 +4,7 @@
 
 1. Importar Base de datos que se encuentra en la carpeta GyManager_BD
 
-2. Entrar al carpeta Sistema y ejecutar el archivo .jar (no eliminar nada)
+* Entrar al carpeta Sistema y ejecutar el archivo .jar (no eliminar nada)
 
 
 
